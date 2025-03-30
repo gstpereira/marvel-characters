@@ -8,10 +8,11 @@ import { Search } from "lucide-react";
 interface SearchInputProps extends InputHTMLAttributes<HTMLInputElement> {
   delay?: number;
   onDebounce?: (value: string) => void;
+  title: string;
 }
 
 export const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>(
-  ({ className, delay = 500, onDebounce, ...props }, ref) => {
+  ({ className, delay = 500, onDebounce, title, ...props }, ref) => {
     const [value, setValue] = useState("");
 
     useEffect(() => {
@@ -24,6 +25,7 @@ export const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>(
 
     return (
       <div className="relative w-1/3">
+        <p className="text-sm mb-1">{title}</p>
         <input
           ref={ref}
           value={value}
@@ -36,7 +38,7 @@ export const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>(
           {...props}
         />
         <Search
-          className="absolute right-3 top-2.5 h-5 w-5 text-gray-500"
+          className="absolute right-3 top-8 h-5 w-5 text-gray-500"
           strokeWidth={1.8}
         />
       </div>

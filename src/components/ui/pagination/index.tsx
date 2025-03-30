@@ -12,7 +12,7 @@ export default function Pagination({
   onPageChange,
 }: PaginationProps) {
   return (
-    <div className="flex justify-center gap-2 mt-6">
+    <div className="flex justify-center gap-2 mt-6 mb-10 border-t border-[#334155] py-3">
       {Array.from({ length: totalPages > 5 ? 5 : totalPages }).map((_, i) => (
         <Button
           key={i}

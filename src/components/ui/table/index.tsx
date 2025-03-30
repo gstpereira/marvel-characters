@@ -39,12 +39,12 @@ export default function CharacterTable({
           </div>
           <div className="col-span-5 text-sm text-gray-300 whitespace-pre-line">
             {character.series.length > 0
-              ? character.series.join("\n")
+              ? character.series.slice(0, 3).join("\n")
               : "Nenhuma série encontrada"}
           </div>
           <div className="col-span-3 text-sm text-gray-300">
             {character.events.length > 0
-              ? character.events.join(", ")
+              ? character.events.slice(0, 3).join(", ")
               : "Nenhum evento encontrado"}
           </div>
         </div>
