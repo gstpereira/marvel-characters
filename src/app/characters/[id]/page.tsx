@@ -30,7 +30,7 @@ const CharacterDetailsPage: NextPage<CharacterPageProps> = ({
 
   return (
     <>
-      <div className="flex flex-col md:flex-row gap-6 items-center bg-[#161b22] p-6 rounded-md mb-8 animate-fade-in">
+      <div className="flex flex-col md:flex-row gap-6 items-center bg-[#161b22] rounded-md mb-8 animate-fade-in">
         <div className="w-full max-w-[300px]">
           <Image
             src={character.image}
@@ -41,7 +41,7 @@ const CharacterDetailsPage: NextPage<CharacterPageProps> = ({
             unoptimized
           />
         </div>
-        <div className="flex-1 text-center md:text-left text-balance">
+        <div className="flex-1 text-center md:text-left md:p-6 text-balance">
           <h1 className="text-[clamp(1.8rem,3vw,2.5rem)] font-bold mb-2 text-white">
             {character.name}
           </h1>
