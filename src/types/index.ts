@@ -5,6 +5,7 @@ export interface CharacterEvent {
 }
 
 export interface Character {
+  id: number;
   name: string;
   image: string;
   description: string;

@@ -1,6 +1,8 @@
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 interface Character {
+  id: number;
   name: string;
   image: string;
   series: string[];
@@ -12,6 +14,8 @@ export default function CharacterTable({
 }: {
   characters: Character[];
 }) {
+  const router = useRouter();
+
   return (
     <div className="mt-6 w-full">
       <div className="grid grid-cols-12 text-sm font-medium text-gray-400 px-4 py-2 border-b border-[#21262d]">
@@ -22,6 +26,7 @@ export default function CharacterTable({
       {characters.map((character, i) => (
         <div
           key={i}
+          onClick={() => router.push(`/characters/${character.id}`)}
           className="grid grid-cols-12 px-4 py-4 border rounded-md mb-3 border-[#334155] hover:bg-[#161b22] hover:cursor-pointer"
         >
           <div className="col-span-4 flex items-center gap-3">

@@ -13,6 +13,7 @@ interface MarvelCharacterEvent {
 }
 
 interface MarvelCharacter {
+  id: number;
   name: string;
   description: string;
   thumbnail: { path: string; extension: string };
@@ -54,6 +55,7 @@ export async function GET(req: NextRequest) {
     console.log(results);
 
     const characters = results.map((char: MarvelCharacter) => ({
+      id: char.id,
       name: char.name,
       image: `${char.thumbnail.path}.${char.thumbnail.extension}`,
       description: char.description || "Sem descrição.",
