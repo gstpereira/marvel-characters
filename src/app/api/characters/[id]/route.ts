@@ -1,25 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
 import crypto from "crypto";
+import {
+  CharacterEvent,
+  MarvelCharacterEvent,
+  MarvelCharacterSerie,
+} from "@/types";
 
 const publicKey = process.env.MARVEL_PUBLIC_KEY!;
 const privateKey = process.env.MARVEL_PRIVATE_KEY!;
-
-interface MarvelCharacterSerie {
-  name: string;
-}
-
-interface MarvelCharacterEvent {
-  name: string;
-}
-
-interface CharacterEvent {
-  title: string;
-  description: string;
-  thumbnail: {
-    path: string;
-    extension: string;
-  };
-}
 
 export async function GET(
   _req: NextRequest,
@@ -71,7 +59,6 @@ export async function GET(
       detailedEvents: events,
     };
 
-    // console.log(character);
     return NextResponse.json(character);
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (error) {

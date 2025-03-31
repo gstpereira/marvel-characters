@@ -1,25 +1,13 @@
 import { NextResponse, NextRequest } from "next/server";
 import crypto from "crypto";
+import {
+  MarvelCharacter,
+  MarvelCharacterEvent,
+  MarvelCharacterSerie,
+} from "@/types";
 
 const publicKey = process.env.MARVEL_PUBLIC_KEY!;
 const privateKey = process.env.MARVEL_PRIVATE_KEY!;
-
-interface MarvelCharacterSerie {
-  name: string;
-}
-
-interface MarvelCharacterEvent {
-  name: string;
-}
-
-interface MarvelCharacter {
-  id: number;
-  name: string;
-  description: string;
-  thumbnail: { path: string; extension: string };
-  series: { items: MarvelCharacterSerie[] };
-  events: { items: MarvelCharacterEvent[] };
-}
 
 export async function GET(req: NextRequest) {
   try {

@@ -1,15 +1,8 @@
 "use client";
 
+import { Character } from "@/types";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-
-interface Character {
-  id: number;
-  name: string;
-  image: string;
-  series: string[];
-  events: string[];
-}
 
 export default function CharacterTable({
   characters,

@@ -13,3 +13,29 @@ export interface Character {
   events: string[];
   detailedEvents: CharacterEvent[];
 }
+
+export interface MarvelCharacterSerie {
+  name: string;
+}
+
+export interface MarvelCharacterEvent {
+  name: string;
+}
+
+export interface MarvelCharacter {
+  id: number;
+  name: string;
+  description: string;
+  thumbnail: { path: string; extension: string };
+  series: { items: MarvelCharacterSerie[] };
+  events: { items: MarvelCharacterEvent[] };
+}
+
+export interface CharacterEvent {
+  title: string;
+  description: string;
+  thumbnail: {
+    path: string;
+    extension: string;
+  };
+}
