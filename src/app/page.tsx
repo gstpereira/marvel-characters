@@ -3,7 +3,7 @@
 import { NextPage } from "next";
 import { useEffect, useRef, useState } from "react";
 import useSWR from "swr";
-import type { Character } from "@/types";
+import { TOTAL_PER_PAGE, type Character } from "@/types";
 import { SearchInput } from "@/components/ui/search";
 import CharacterTable from "@/components/ui/table";
 import Pagination from "@/components/ui/pagination";
@@ -13,7 +13,6 @@ const fetcher = (url: string) => fetch(url).then((res) => res.json());
 const CharacterSearch: NextPage = () => {
   const [search, setSearch] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const perPage = 10;
   const tableRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -27,7 +26,7 @@ const CharacterSearch: NextPage = () => {
 
   const characters: Character[] = data?.results ?? [];
   const total: number = data?.total ?? 0;
-  const totalPages = Math.ceil(total / perPage);
+  const totalPages = Math.ceil(total / TOTAL_PER_PAGE);
 
   return (
     <>

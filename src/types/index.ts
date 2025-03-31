@@ -1,7 +1,13 @@
+export const TOTAL_PER_PAGE = 10;
+
 export interface CharacterEvent {
   title: string;
   image: string;
   description: string;
+  thumbnail: {
+    path: string;
+    extension: string;
+  };
 }
 
 export interface Character {
@@ -29,13 +35,4 @@ export interface MarvelCharacter {
   thumbnail: { path: string; extension: string };
   series: { items: MarvelCharacterSerie[] };
   events: { items: MarvelCharacterEvent[] };
-}
-
-export interface CharacterEvent {
-  title: string;
-  description: string;
-  thumbnail: {
-    path: string;
-    extension: string;
-  };
 }
