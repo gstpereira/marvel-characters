@@ -28,30 +28,38 @@ export default function CharacterDetailsPage({
 
   return (
     <>
-      <div className="flex flex-col md:flex-row gap-6 items-center bg-[#161b22] mb-8">
-        <Image
-          src={character.image}
-          alt={character.name}
-          width={300}
-          height={300}
-          className="object-cover"
-          unoptimized
-        />
-        <div className="p-6 flex flex-col justify-center align-self-center">
-          <h1 className="text-3xl font-bold mb-2 text-white">
+      <div className="flex flex-col md:flex-row gap-6 items-center bg-[#161b22] p-6 rounded-md mb-8 animate-fade-in">
+        <div className="w-full max-w-[300px]">
+          <Image
+            src={character.image}
+            alt={character.name}
+            width={300}
+            height={300}
+            className="rounded-md object-cover w-full h-auto"
+            unoptimized
+          />
+        </div>
+        <div className="flex-1 text-center md:text-left text-balance">
+          <h1 className="text-[clamp(1.8rem,3vw,2.5rem)] font-bold mb-2 text-white">
             {character.name}
           </h1>
-          <p className="text-gray-200 text-lg leading-relaxed">
+          <p className="text-gray-200 text-base leading-relaxed text-balance">
             {character.description || "Nenhuma descrição disponível."}
           </p>
         </div>
       </div>
-      <div className="min-h-[95vh] text-white px-8 pt-6 pb-12">
+
+      <div className="min-h-[95vh] text-white px-4 md:px-8 pt-6 pb-12">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-xl font-semibold mb-4 text-gray-300">Eventos</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-5">
+          <h2 className="text-xl font-semibold mb-4 text-gray-300 text-balance">
+            Eventos
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {character.detailedEvents.map((event, i) => (
-              <Card key={i} className="bg-[#161b22] mb-5">
+              <Card
+                key={i}
+                className="bg-[#161b22] mb-5 transition duration-300 hover:scale-[1.01] hover:shadow-md"
+              >
                 <div>
                   <Image
                     src={event.image}
@@ -62,10 +70,10 @@ export default function CharacterDetailsPage({
                     unoptimized
                   />
                   <div className="p-4">
-                    <h3 className="mt-1 font-bold text-base mb-6">
+                    <h3 className="mt-1 font-bold text-base mb-4 text-balance">
                       {event.title}
                     </h3>
-                    <p className="text-sm text-gray-400 leading-snug">
+                    <p className="text-sm text-gray-400 leading-snug text-balance">
                       {event.description}
                     </p>
                   </div>

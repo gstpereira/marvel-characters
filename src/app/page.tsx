@@ -1,11 +1,8 @@
 "use client";
 
-// import Image from "next/image";
 import { NextPage } from "next";
 import { useEffect, useRef, useState } from "react";
 import useSWR from "swr";
-// import { Card, CardContent } from "@/components/ui/card";
-// import { Button } from "@/components/ui/button";
 import type { Character } from "@/types";
 import { SearchInput } from "@/components/ui/search";
 import CharacterTable from "@/components/ui/table";
@@ -15,9 +12,6 @@ const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 const CharacterSearch: NextPage = () => {
   const [search, setSearch] = useState("");
-  // const [selectedCharacter, setSelectedCharacter] = useState<Character | null>(
-  //   null
-  // );
   const [currentPage, setCurrentPage] = useState(1);
   const perPage = 10;
   const tableRef = useRef<HTMLDivElement>(null);

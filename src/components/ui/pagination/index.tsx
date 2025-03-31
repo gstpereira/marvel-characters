@@ -11,22 +11,38 @@ export default function Pagination({
   totalPages,
   onPageChange,
 }: PaginationProps) {
+  const maxVisible = 5;
+  const startPage = Math.max(
+    1,
+    Math.min(
+      currentPage - Math.floor(maxVisible / 2),
+      totalPages - maxVisible + 1
+    )
+  );
+  const pages = Array.from(
+    { length: Math.min(maxVisible, totalPages) },
+    (_, i) => startPage + i
+  );
+
   return (
     <div className="flex justify-center gap-2 mt-6 mb-10 border-t border-[#334155] py-3">
-      {Array.from({ length: totalPages > 5 ? 5 : totalPages }).map((_, i) => (
+      {pages.map((page) => (
         <Button
-          key={i}
-          variant={currentPage === i + 1 ? "default" : "ghost"}
-          onClick={() => onPageChange(i + 1)}
+          key={page}
+          variant={currentPage === page ? "default" : "ghost"}
+          onClick={() => onPageChange(page)}
         >
-          {i + 1}
+          {page}
         </Button>
       ))}
-      {totalPages > 5 && <span className="text-gray-400">...</span>}
-      {totalPages > 5 && (
-        <Button variant="ghost" onClick={() => onPageChange(totalPages)}>
-          {totalPages}
-        </Button>
+
+      {pages[pages.length - 1] < totalPages && (
+        <>
+          <span className="text-gray-400">...</span>
+          <Button variant="ghost" onClick={() => onPageChange(totalPages)}>
+            {totalPages}
+          </Button>
+        </>
       )}
     </div>
   );
