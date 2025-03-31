@@ -9,41 +9,41 @@ import {
 const publicKey = process.env.MARVEL_PUBLIC_KEY!;
 const privateKey = process.env.MARVEL_PRIVATE_KEY!;
 
-function getAuthParams() {
+const getAuthParams = () => {
   const ts = Date.now().toString();
   const hash = crypto
     .createHash("md5")
     .update(ts + privateKey + publicKey)
     .digest("hex");
   return `ts=${ts}&apikey=${publicKey}&hash=${hash}`;
-}
+};
 
-export async function fetchCharacter(
+export const fetchCharacter = async (
   id: string
-): Promise<MarvelCharacterResponse> {
+): Promise<MarvelCharacterResponse> => {
   const res = await fetch(
     `https://gateway.marvel.com/v1/public/characters/${id}?${getAuthParams()}`
   );
   const json = await res.json();
   return json.data.results[0];
-}
+};
 
-export async function fetchCharacterEvents(
+export const fetchCharacterEvents = async (
   id: string,
   limit = 8
-): Promise<MarvelEventResponse[]> {
+): Promise<MarvelEventResponse[]> => {
   const res = await fetch(
     `https://gateway.marvel.com/v1/public/characters/${id}/events?limit=${limit}&${getAuthParams()}`
   );
   const json = await res.json();
   return json.data.results;
-}
+};
 
-export async function fetchCharacters({
+export const fetchCharacters = async ({
   limit,
   offset,
   name,
-}: FetchCharactersParams) {
+}: FetchCharactersParams) => {
   const base = "https://gateway.marvel.com/v1/public/characters";
   const search = name ? `&nameStartsWith=${encodeURIComponent(name)}` : "";
 
@@ -56,4 +56,4 @@ export async function fetchCharacters({
 
   const json = await res.json();
   return json.data;
-}
+};

@@ -1,17 +1,19 @@
 "use client";
 
-import Image from "next/image";
-import { Card } from "@/components/ui/card";
-import type { Character } from "@/types";
 import useSWR from "swr";
+import Image from "next/image";
+import { NextPage } from "next";
+import type { Character } from "@/types";
+import { Card } from "@/components/ui/card";
+import { fetcher } from "@/lib/utils";
 
-const fetcher = (url: string) => fetch(url).then((res) => res.json());
-
-export default function CharacterDetailsPage({
-  params,
-}: {
+interface CharacterPageProps {
   params: { id: string };
-}) {
+}
+
+const CharacterDetailsPage: NextPage<CharacterPageProps> = ({
+  params,
+}: CharacterPageProps) => {
   const { data: character, isLoading } = useSWR<Character>(
     `/api/characters/${params.id}`,
     fetcher
@@ -85,4 +87,6 @@ export default function CharacterDetailsPage({
       </div>
     </>
   );
-}
+};
+
+export default CharacterDetailsPage;

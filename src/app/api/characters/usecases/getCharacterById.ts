@@ -5,7 +5,7 @@ import {
 import { MarvelCharacterEvent, MarvelCharacterSerie } from "@/types";
 import { CharacterEventResponse } from "@/app/api/characters/types/character";
 
-export async function getCharacterById(id: string) {
+export const getCharacterById = async (id: string) => {
   const char = await fetchCharacter(id);
   const eventsJson = await fetchCharacterEvents(id, 8);
 
@@ -26,4 +26,4 @@ export async function getCharacterById(id: string) {
   };
 
   return { ...character, detailedEvents: events };
-}
+};

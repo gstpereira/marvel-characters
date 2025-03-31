@@ -6,10 +6,19 @@ import {
   TOTAL_PER_PAGE,
 } from "@/types";
 
-export async function listCharacters(page: number = 1, name: string = "") {
-  const offset = (page - 1) * TOTAL_PER_PAGE;
+type Input = {
+  page: number;
+  name: string;
+};
 
-  const data = await fetchCharacters({ limit: TOTAL_PER_PAGE, offset, name });
+export const listCharacters = async (input: Input) => {
+  const offset = (input.page - 1) * TOTAL_PER_PAGE;
+
+  const data = await fetchCharacters({
+    limit: TOTAL_PER_PAGE,
+    offset,
+    name: input.name,
+  });
 
   return {
     results: data.results.map((char: MarvelCharacter) => ({
@@ -23,4 +32,4 @@ export async function listCharacters(page: number = 1, name: string = "") {
     total: data.total,
     offset: data.offset,
   };
-}
+};

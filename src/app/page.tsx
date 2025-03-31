@@ -1,14 +1,13 @@
 "use client";
 
-import { NextPage } from "next";
-import { useEffect, useRef, useState } from "react";
 import useSWR from "swr";
-import { TOTAL_PER_PAGE, type Character } from "@/types";
-import { SearchInput } from "@/components/ui/search";
+import { NextPage } from "next";
+import { fetcher } from "@/lib/utils";
 import CharacterTable from "@/components/ui/table";
 import Pagination from "@/components/ui/pagination";
-
-const fetcher = (url: string) => fetch(url).then((res) => res.json());
+import { useEffect, useRef, useState } from "react";
+import { SearchInput } from "@/components/ui/search";
+import { TOTAL_PER_PAGE, type Character } from "@/types";
 
 const CharacterSearch: NextPage = () => {
   const [search, setSearch] = useState("");

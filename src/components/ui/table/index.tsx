@@ -1,14 +1,10 @@
 "use client";
 
-import { Character } from "@/types";
 import Image from "next/image";
+import { Character } from "@/types";
 import { useRouter } from "next/navigation";
 
-export default function CharacterTable({
-  characters,
-}: {
-  characters: Character[];
-}) {
+const CharacterTable = ({ characters }: { characters: Character[] }) => {
   const router = useRouter();
 
   return (
@@ -54,4 +50,6 @@ export default function CharacterTable({
       ))}
     </div>
   );
-}
+};
+
+export default CharacterTable;
